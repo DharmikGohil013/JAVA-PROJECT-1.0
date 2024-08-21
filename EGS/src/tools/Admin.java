@@ -1,37 +1,21 @@
 package tools;
 
-public class Admin {
-    private String name;
-    private String email;
-    private String adminID;
-    private String birthDate;
+public class Admin extends Person {
     private String password;
 
-    public Admin(String name, String email, String adminID, String birthDate, String password) {
-        this.name = name;
-        this.email = email;
-        this.adminID = adminID;
-        this.birthDate = birthDate;
+    // Constructor
+    public Admin(String name, String email, String id, String birthDate, String password) {
+        super(name, email, id, birthDate);
         this.password = password;
     }
 
-    public String getName() {
-        return name;
-    }
+    // Getter and Setter methods
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getAdminID() {
-        return adminID;
-    }
-
-    public String getBirthDate() {
-        return birthDate;
-    }
-
-    public String getPassword() {
-        return password;
+    @Override
+    public String toString() {
+        return String.format("Admin [Name=%s, Email=%s, ID=%s, BirthDate=%s]",
+                             getName(), getEmail(), getId(), getBirthDate());
     }
 }

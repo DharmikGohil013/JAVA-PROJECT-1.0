@@ -1,55 +1,57 @@
 package tools;
+import tools.Student;
+import tools.Faculty;
+import tools.Admin;
+import tools.DataInitializer;
+import java.util.Scanner;
 
 import java.util.Scanner;
 
 public class Main {
+
+    private static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        showLogo();
         showMenu();
     }
 
-    private static void showLogo() {
-        System.out.println("E-Governance System");
-        try {
-            Thread.sleep(3000); // Show logo for 3 seconds
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Opening page ........");
-        try {
-            Thread.sleep(1000); // Pause before clearing
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        clearScreen();
-    }
-
-    private static void clearScreen() {
-        for (int i = 0; i < 50; i++) {
-            System.out.println();
-        }
-    }
-
     public static void showMenu() {
-        Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("Select an option:");
+            System.out.println("Welcome to the E-Governance System");
+            System.out.println("Please select an option:");
             System.out.println("1. Admin");
-            System.out.println("2. Faculties");
-            System.out.println("3. Students");
-            int choice = scanner.nextInt();
+            System.out.println("2. Student");
+            System.out.println("3. Faculty");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            
+            // Error Handling Example
+            int choice = 0;
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+                scanner.nextLine(); // Consume the newline character
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine(); // Clear the buffer
+                continue; // Return to the start of the loop
+            }
+
             switch (choice) {
                 case 1:
                     AdminSection.adminLogin();
                     break;
                 case 2:
-                    // Faculties section (to be implemented)
+                    StudentSection.studentLogin();
                     break;
                 case 3:
-                    // Students section (to be implemented)
+                    FacultySection.facultyLogin();
+                    break;
+                case 4:
+                    System.out.println("Exiting the system. Goodbye!");
+                    System.exit(0);
                     break;
                 default:
-                    System.out.println("Invalid option. Please try again.");
+                    System.out.println("Invalid choice. Please try again.");
             }
         }
     }
