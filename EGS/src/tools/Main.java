@@ -1,64 +1,56 @@
-// package egovernance.main;
 package tools;
+
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
-        // Display logo
-        displayLogo();
-        
-        // Show opening page message
-        showOpeningPage();
-
-        // Clear screen (platform-specific, basic approach shown)
-        clearScreen();
-
-        // Show menu
+        showLogo();
         showMenu();
     }
 
-    private static void displayLogo() {
+    private static void showLogo() {
         System.out.println("E-Governance System");
         try {
-            Thread.sleep(3000); // Wait for 3 seconds
+            Thread.sleep(3000); // Show logo for 3 seconds
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    private static void showOpeningPage() {
-        System.out.println("Opening page...");
+        System.out.println("Opening page ........");
         try {
-            Thread.sleep(2000); // Wait for 2 seconds
+            Thread.sleep(1000); // Pause before clearing
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        clearScreen();
     }
 
     private static void clearScreen() {
-        // Basic clear screen approach (works in some terminals)
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+        for (int i = 0; i < 50; i++) {
+            System.out.println();
+        }
     }
 
-    private static void showMenu() {
-        System.out.println("Main Menu:");
-        System.out.println("1. Admin (University settings)");
-        System.out.println("2. Faculties");
-        System.out.println("3. Students");
-
+    public static void showMenu() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Select an option: ");
-        int choice = scanner.nextInt();
-
-        // Handle the choice (to be implemented)
-
-        switch (choice) {
-            case 1:
-                AdminSection.adminLogin();
-                break;
-            // Additional cases for other options
+        while (true) {
+            System.out.println("Select an option:");
+            System.out.println("1. Admin");
+            System.out.println("2. Faculties");
+            System.out.println("3. Students");
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    AdminSection.adminLogin();
+                    break;
+                case 2:
+                    // Faculties section (to be implemented)
+                    break;
+                case 3:
+                    // Students section (to be implemented)
+                    break;
+                default:
+                    System.out.println("Invalid option. Please try again.");
+            }
         }
     }
 }
